@@ -17,7 +17,12 @@
 	},
 	"homepage": "https://github.com/ivankprod/mxm-shopper-server",
 	"type": "module",
+	"imports": {
+		"#core/*": "./src/*"
+	},
 	"dependencies": {
+		"body-parser": "^1.20.2",
+		"cors": "^2.8.5",
 		"express": "^4.19.2"
 	}
 }

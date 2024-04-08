@@ -1,0 +1,20 @@
+[
+	{
+		"title": "Boat Rockerz 335",
+		"reviews": 75,
+		"price": 20,
+		"discount": 60,
+		"color": "dark-blue-alice"
+	}, {
+		"title": "Boat kerz 236",
+		"reviews": 75,
+		"price": 40,
+		"color": "light-blue-alice"
+	}, {
+		"title": "Boat Rockerz 325",
+		"reviews": 75,
+		"price": 30,
+		"discount": 40,
+		"color": "paleturquoise"
+	}
+]
