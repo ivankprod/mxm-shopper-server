@@ -1,12 +1,17 @@
+import os from "os";
 import fs from "fs";
 import express from "express";
-
-import cart from "#core/store/cart.json" with { type: "json" };
 
 export const routeCart = express.Router();
 
 routeCart.get("/get", (_, res) => {
-	res.json(cart);
+	try {
+		const curCart = JSON.parse(fs.readFileSync("./src/store/cart.json"));
+
+		return res.json(curCart);
+	} catch (e) {
+		return res.status(500).send("Server error: " + e);
+	}
 });
 
 routeCart.post("/add", (req, res) => {
@@ -15,10 +20,16 @@ routeCart.post("/add", (req, res) => {
 	if (!data) return res.status(400).send("Bad Request");
 
 	try {
-		fs.readFileSync("./src/store/cart.json");
+		const curCart = JSON.parse(fs.readFileSync("./src/store/cart.json"));
+		const finalCart = [...curCart, data];
 
-		console.log(data);
-	} catch(e) {
+		fs.writeFileSync(
+			"./src/store/cart.json",
+			JSON.stringify(finalCart, null, "	").replace(/\n/, os.EOL)
+		);
+
+		return res.send("Товар успешно добавлен в корзину");
+	} catch (e) {
 		return res.status(500).send("Server error: " + e);
 	}
 });
